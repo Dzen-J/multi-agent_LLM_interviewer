@@ -26,8 +26,6 @@ class Assessment(BaseModel):
     knowledge_gaps: Dict[str, str] = {}  # тема -> правильный ответ
     soft_skills_notes: List[str] = []
 
-# Главное состояние для LangGraph
-# core/state.py
 class InterviewState(TypedDict):
     candidate_info: CandidateInfo
     messages: List[Message]
@@ -43,7 +41,7 @@ class InterviewState(TypedDict):
     current_question: Optional[str]
     current_answer: Optional[str]
     coordinator_instruction: Optional[str]
-    log_data: Dict[str, Any]  # Добавьте это!
+    log_data: Dict[str, Any]
     current_turn_thoughts: List[str]
     scenario_number: int
 

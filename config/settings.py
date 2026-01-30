@@ -8,21 +8,17 @@ class Settings:
     """Класс настроек приложения"""
     
     def __init__(self):
-        # MistralAI
         self.MISTRAL_API_KEY: str = os.getenv("MISTRAL_API_KEY", "")
         self.MISTRAL_MODEL: str = os.getenv("MISTRAL_MODEL", "mistral-large-latest")
         
-        # RAG
         self.RAG_ENABLED: bool = os.getenv("RAG_ENABLED", "True").lower() == "true"
         self.EMBEDDING_MODEL: str = os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
         self.CHROMA_PERSIST_DIR: str = os.getenv("CHROMA_PERSIST_DIR", "./chroma_db")
         
-        # Интервью
         self.MAX_TURNS: int = int(os.getenv("MAX_TURNS", "10"))
         self.DEFAULT_DIFFICULTY: int = int(os.getenv("DEFAULT_DIFFICULTY", "2"))
         self.MIN_CONFIDENCE_SCORE: float = float(os.getenv("MIN_CONFIDENCE_SCORE", "0.7"))
         
-        # Логирование
         self.LOG_DIR: str = os.getenv("LOG_DIR", "./interview_logs")
         self.LOG_FORMAT: str = os.getenv("LOG_FORMAT", "json")
 

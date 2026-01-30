@@ -1,4 +1,3 @@
-# core/logger.py
 import json
 from datetime import datetime
 from typing import Dict, Any, Optional
@@ -24,7 +23,6 @@ class InterviewLogger:
         """Форматирует мысли агентов согласно ТЗ"""
         formatted = ""
         for thought in thoughts_list:
-            # Убедимся, что мысль в правильном формате [AgentName]: текст
             if not thought.startswith("["):
                 continue
             formatted += f"{thought}\n"
@@ -44,12 +42,11 @@ class InterviewLogger:
         }
         
         log_data["turns"].append(turn)
-        print(f"✅ ЗАПИСЬ В ЛОГ: Turn {turn['turn_id']} добавлен")
+        print(f"ЗАПИСЬ В ЛОГ: Turn {turn['turn_id']} добавлен")
         
-        # Отладочная информация
-        print(f"   • Вопрос: {agent_visible_message[:80]}...")
-        print(f"   • Ответ: {user_message[:80]}...")
-        print(f"   • Мысли агентов: {internal_thoughts[:100]}...")
+        print(f"Вопрос: {agent_visible_message[:80]}...")
+        print(f"Ответ: {user_message[:80]}...")
+        print(f"Мысли агентов: {internal_thoughts[:100]}...")
         
         return log_data
     
@@ -63,11 +60,9 @@ class InterviewLogger:
         else:
             log_data["final_feedback"] = str(feedback)
         
-        # Добавляем время окончания, если его нет
         if "end_time" not in log_data:
             log_data["end_time"] = datetime.now().isoformat()
         
-        # Рассчитываем длительность, если start_time есть
         if "start_time" in log_data:
             start = datetime.fromisoformat(log_data["start_time"])
             end = datetime.fromisoformat(log_data["end_time"])
@@ -89,7 +84,6 @@ class InterviewLogger:
         
         filepath = Path(settings.LOG_DIR) / filename
         
-        # Сохраняем только требуемые 3 поля
         output_data = {
             "participant_name": log_data["participant_name"],
             "turns": log_data["turns"],
@@ -99,9 +93,8 @@ class InterviewLogger:
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(output_data, f, indent=2, ensure_ascii=False)
         
-        print(f"📁 Лог сохранен: {filepath}")
+        print(f"Лог сохранен: {filepath}")
         
-        # Проверка
         InterviewLogger._verify_log(output_data)
         
         return filepath
@@ -109,16 +102,16 @@ class InterviewLogger:
     @staticmethod
     def _verify_log(data: Dict[str, Any]):
         """Проверяет структуру лога"""
-        print(f"\n🔍 ПРОВЕРКА СТРУКТУРЫ ЛОГА:")
-        print(f"   • Имя участника: {data.get('participant_name')}")
-        print(f"   • Количество turns: {len(data.get('turns', []))}")
+        print(f"\n ПРОВЕРКА СТРУКТУРЫ ЛОГА:")
+        print(f"Имя участника: {data.get('participant_name')}")
+        print(f"Количество turns: {len(data.get('turns', []))}")
         
         if data.get('turns'):
             print(f"   • Пример turn:")
             turn = data['turns'][0]
-            print(f"     - ID: {turn.get('turn_id')}")
-            print(f"     - Вопрос: {turn.get('agent_visible_message', '')[:60]}...")
-            print(f"     - Ответ: {turn.get('user_message', '')[:60]}...")
-            print(f"     - Мысли: {turn.get('internal_thoughts', '')[:60]}...")
+            print(f" - ID: {turn.get('turn_id')}")
+            print(f" - Вопрос: {turn.get('agent_visible_message', '')[:60]}...")
+            print(f" - Ответ: {turn.get('user_message', '')[:60]}...")
+            print(f" - Мысли: {turn.get('internal_thoughts', '')[:60]}...")
         else:
-            print(f"   ⚠️  ВНИМАНИЕ: turns пустые!")
+            print(f"ВНИМАНИЕ: turns пустые!")

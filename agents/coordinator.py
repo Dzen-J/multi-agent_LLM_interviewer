@@ -1,4 +1,3 @@
-# agents/coordinator.py
 from typing import Dict, Any, List
 import json
 from pathlib import Path
@@ -35,7 +34,6 @@ class CoordinatorAgent:
         candidate_info = state["candidate_info"]
         technologies = getattr(candidate_info, 'technologies', [])
         
-        # Если technologies - это список, преобразуем в строку
         if isinstance(technologies, list):
             technologies_str = ", ".join(technologies)
         else:
@@ -44,7 +42,6 @@ class CoordinatorAgent:
         assessment = state.get("assessment", Assessment())
         current_score = getattr(assessment, 'technical_score', 0)
         
-        # Подготавливаем данные для промпта
         prompt_data = {
             "candidate_name": candidate_info.name,
             "position": candidate_info.position,
@@ -66,7 +63,6 @@ class CoordinatorAgent:
             response = self.llm.invoke(formatted_prompt)
             content = response.content.strip()
             
-            # Убираем markdown код, если есть
             if "```json" in content:
                 content = content.split("```json")[1].split("```")[0].strip()
             elif "```" in content:

@@ -32,16 +32,13 @@ class FeedbackGenerator:
                      duration_minutes: float) -> Dict[str, Any]:
         """Генерирует финальный фидбэк по результатам интервью"""
         
-        # Безопасно получаем assessment
         assessment = state.get("assessment")
         if assessment is None:
-            # Создаем пустой assessment
             from core.state import Assessment
             assessment = Assessment()
         
         candidate = state["candidate_info"]
         
-        # Безопасно получаем атрибуты assessment
         def safe_get(obj, attr, default=None):
             if hasattr(obj, attr):
                 return getattr(obj, attr)
@@ -51,7 +48,6 @@ class FeedbackGenerator:
         hiring_recommendation = self._determine_hiring_recommendation(assessment, candidate) # рекомендация по найму
         confidence = self._calculate_confidence(assessment) # Уверенность
         
-        # Форматируем данные для промпта
         confirmed_skills = safe_get(assessment, 'confirmed_skills', [])
         confirmed_skills_str = "\n".join([f"- {skill}" for skill in confirmed_skills]) if confirmed_skills else "- Нет данных"
         

@@ -1,4 +1,3 @@
-# agents/interviewer.py
 from typing import Dict, Any, List
 import random
 from pathlib import Path

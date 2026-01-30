@@ -156,4 +156,17 @@ Coordinator → Interviewer → Кандидат → Observer → [Повтор]
 - Дисковое пространство: ~50KB на лог файл
 
 ## Пример работы программы
+1. Знакомство с кандидатом:
+<img width="583" height="575" alt="image" src="https://github.com/user-attachments/assets/069616fc-4179-43e7-a197-97b2b97ebd91" />
+2. Первый вопрос
+Он формируется исходя из стека пользователя, позиции и грейда.
+<img width="1329" height="458" alt="image" src="https://github.com/user-attachments/assets/67729871-6b32-4b29-bb74-105d1b611378" />
+3. Сосредоточенность
+Если пользователь попробует увернуться от вопроса или общаться на отвлеченные темы, то собеседующией вежливо попросит вернуться к теме и повторит вопрос:
+<img width="1331" height="876" alt="image" src="https://github.com/user-attachments/assets/7d437b38-e71b-4439-ad17-0bba245769f2" />
+4. Фидбэк
+<img width="1321" height="664" alt="image" src="https://github.com/user-attachments/assets/282c683c-a41a-41ff-b052-4ae169c088d0" />
+<img width="1328" height="439" alt="image" src="https://github.com/user-attachments/assets/ca1196f2-8691-4c88-9e4b-c396204a2bcf" />
+<img width="1337" height="840" alt="image" src="https://github.com/user-attachments/assets/516d5dbd-17f4-4853-b961-866809b3a572" />
+<img width="1329" height="823" alt="image" src="https://github.com/user-attachments/assets/f420cc96-0be7-4ec8-bdef-7b34a3bc4364" />
 
